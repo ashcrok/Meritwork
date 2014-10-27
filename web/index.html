@@ -28,6 +28,8 @@ File created by ashcrok
         <script src="assets/javascript/app/app.js"></script>
         <script src="assets/javascript/app/controllers/MainCtrl.js"></script>
         <script src="assets/javascript/app/controllers/HomeCtrl.js"></script>
+        <script src="assets/javascript/app/controllers/LoginCtrl.js"></script>
+        <script src="assets/javascript/app/controllers/RegisterCtrl.js"></script>
     </head>
     
     <body ng-controller="MainCtrl">
@@ -46,15 +48,15 @@ File created by ashcrok
             <div class="collapse navbar-collapse navbar-right" id="example-navbar-collapse" align="right">
                 <ul class="nav navbar-nav" ng-if="loggedIn.logged">
                     <li class="active"><a href="#">Services</a></li>
-                    <li><a href="#">Clients</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Network</a></li>
-                    <li><a href="#">Messages</a></li>
-                    <li><a href="#">Log out</a></li>
+                    <li><a ng-href="#">Clients</a></li>
+                    <li><a ng-href="#">Profile</a></li>
+                    <li><a ng-href="#">Network</a></li>
+                    <li><a ng-href="#">Messages</a></li>
+                    <li><a ng-href="#">Log out</a></li>
                 </ul>
                 <ul class="nav navbar-nav" ng-hide="loggedIn.logged">
-                    <li><a href="#">Log In</a></li>
-                    <li><a href="#">Register</a></li>
+                    <li><a ng-href="#/login">Login</a></li>
+                    <li><a ng-href="#/register">Register</a></li>
                 </ul>
             </div>
         </nav>

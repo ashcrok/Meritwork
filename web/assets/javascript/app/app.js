@@ -13,11 +13,11 @@ var meritworkApp = angular.module('meritworkApp', [
 meritworkApp.config(["$httpProvider", "$routeProvider", function($httpProvider, $routeProvider) {
         
         $httpProvider.defaults.transformRequest = function (data) {
-            if(data == undefined){
-                return data
+            if(data === undefined){
+                return data;
             }
-            return $.param(data)
-        }
+            return $.param(data);
+        };
 
         $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded; charset=UTF-8";
         
@@ -26,7 +26,15 @@ meritworkApp.config(["$httpProvider", "$routeProvider", function($httpProvider, 
                     templateUrl : 'partials/home.html',
                     controller  : 'HomeCtrl'
                 }).
+                when('/login', {
+                    templateUrl : 'partials/login.html',
+                    controller  : 'LoginCtrl'
+                }).
+                when('/register', {
+                    templateUrl : 'partials/register.html',
+                    controller  : 'RegisterCtrl'
+                }).
                 otherwise({
                     redirectTo: '/'
-                })
+                });
 }]);
