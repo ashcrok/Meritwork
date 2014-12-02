@@ -5,40 +5,92 @@ File created by ashcrok
 -->
 
 <!-- Page Content -->
+
 <div id="page-content-wrapper">
     <div class="container-fluid">
+        
+        <div class="visible-xs">
+            <br>
+            <br>
+        </div>
+        
+        
         <div class="jumbotron">
-            <h1>Hello, world!</h1>
+            <h1>Welcome to Meritwork!</h1>
             <p>Meritwork is a socially-oriented enterprise committed to generating 
                 work for small companies, self-employed individuals and others 
                 looking for work opportunities, helping to realise their full potential, 
                 while increasing the service quality for consumers and creating sustainable 
                 local economies.</p>
-            <p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
+            <p><a href="test/" class="btn btn-primary btn-lg" role="button">Learn more</a></p>
         </div>
         
         <div class="row">
-            <div class="col-xs-6 col-md-3">
-              <a href="#" class="thumbnail">
-                <img ng-src="http://iwatcher.net/shot/d979916f6733b8b3a809a41602345ef5-300x400.jpg">
-              </a>
+            <div class="col-xs-12 col-md-6">
+                <div class="panel panel-primary" >
+                    <div class="panel-heading" style="padding: 5px; padding-left: 15px">
+                        <h4><strong>Popular Services</strong></h4>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-condensed table-striped">
+                            <thead>
+                                <tr>
+                                    <th><strong>Service</strong></th>
+                                    <th><strong>Providers</strong></th>
+                                    <th><strong>Clients</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="service in services">
+                                    <td>{{service.service}}</td>
+                                    <td>{{service.providers}}</td>
+                                    <td>{{service.clients}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="#" class="panel-footer clearfix btn-block">
+                        <span class="pull-left"><strong>View more</strong></span>
+                        <span class="glyphicon glyphicon-arrow-right pull-right"></span>
+                    </a>
+                </div>
             </div>
-            <div class="col-xs-6 col-md-3">
-              <a href="#" class="thumbnail">
-                <img ng-src="http://iwatcher.net/shot/d979916f6733b8b3a809a41602345ef5-300x400.jpg">
-              </a>
-            </div>
-            <div class="col-xs-6 col-md-3">
-              <a href="#" class="thumbnail">
-                <img ng-src="http://iwatcher.net/shot/d979916f6733b8b3a809a41602345ef5-300x400.jpg">
-              </a>
-            </div>
-            <div class="col-xs-6 col-md-3">
-              <a href="#" class="thumbnail">
-                <img ng-src="http://iwatcher.net/shot/d979916f6733b8b3a809a41602345ef5-300x400.jpg">
-              </a>
+            <div class="col-xs-12 col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading" style="padding: 5px; padding-left: 15px">
+                        <h4><strong>Latest Messages</strong></h4>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-condensed table-striped">
+                            <thead>
+                                <tr>
+                                    <th><strong>From</strong></th>
+                                    <th><strong>Message</strong></th>
+                                    <th><strong>Date</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="message in messages">
+                                    <td>{{message.from}}</td>
+                                    <td>{{message.message}}</td>
+                                    <td>{{message.date}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="#" class="panel-footer clearfix btn-block">
+                        <span class="pull-left"><strong>View All</strong></span>
+                        <span class="glyphicon glyphicon-arrow-right pull-right"></span>
+                    </a>
+                </div>
             </div>
         </div>
+        
+        
+        
+        
+        
+        
     </div>
 </div>
 <!-- /#page-content-wrapper -->

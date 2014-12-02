@@ -3,18 +3,21 @@
 File created by ashcrok
                 Mihai Pricop
 -->
-<html lang="en" ng-app="meritworkApp">
+<html lang="en" data-ng-app="meritworkApp">
     <head>
         <title>Meritwork</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <!-- Styles -->
-        <script src="assets/javascript/library/jquery.min.js"></script>
+        <script src="assets/javascript/library/jquery.js"></script>
+<!--        <link rel="stylesheet" type="text/css" href="http://bootswatch.com/yeti/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="http://bootswatch.com/yeti/bootstrap.min.css">-->
         <link rel="stylesheet" type="text/css" href="assets/styles/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="assets/styles/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="assets/styles/bootstrap-theme.css">
         <link rel="stylesheet" type="text/css" href="assets/styles/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/styles/simple-sidebar.css">
         
         <!-- AngularJS -->
         <script src="assets/javascript/library/bootstrap.js"></script>
@@ -23,45 +26,96 @@ File created by ashcrok
         <script src="assets/javascript/library/angular-route.min.js"></script>
         <script src="assets/javascript/library/angular-cookies.min.js"></script>
         <script src="assets/javascript/library/angular-bootstrap.js"></script>
+        <script src="assets/javascript/library/sha.js"></script>
+        <script src="assets/javascript/library/typeahead.js"></script>
+        <script src="assets/javascript/library/webcam.js"></script>
         
         <!-- Controllers -->
+        <script src="assets/javascript/app/config.js"></script>
         <script src="assets/javascript/app/app.js"></script>
         <script src="assets/javascript/app/controllers/MainCtrl.js"></script>
         <script src="assets/javascript/app/controllers/HomeCtrl.js"></script>
         <script src="assets/javascript/app/controllers/LoginCtrl.js"></script>
         <script src="assets/javascript/app/controllers/RegisterCtrl.js"></script>
+        <script src="assets/javascript/app/controllers/TestCtrl.js"></script>
+        <script src="assets/javascript/app/controllers/profile/ProfileCtrl.js"></script>
+        <script src="assets/javascript/app/controllers/profile/NewContactInfoCtrl.js"></script>
+        <script src="assets/javascript/app/controllers/profile/UpdateContactInfoCtrl.js"></script>
+        <script src="assets/javascript/app/controllers/profile/NewServiceCtrl.js"></script>
+        <script src="assets/javascript/app/controllers/profile/UpdateServiceCtrl.js"></script>
+        
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
     </head>
     
-    <body ng-controller="MainCtrl">
-        <!-- Page Content -->
-        <nav class="navbar navbar-inverse" role="navigation">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" 
-                    data-target="#example-navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand">Meritwork</a>
-            </div>
-            <div class="collapse navbar-collapse navbar-right" id="example-navbar-collapse" align="right">
-                <ul class="nav navbar-nav" ng-if="loggedIn.logged">
-                    <li class="active"><a href="#">Services</a></li>
-                    <li><a ng-href="#">Clients</a></li>
-                    <li><a ng-href="#">Profile</a></li>
-                    <li><a ng-href="#">Network</a></li>
-                    <li><a ng-href="#">Messages</a></li>
-                    <li><a ng-href="#">Log out</a></li>
-                </ul>
-                <ul class="nav navbar-nav" ng-hide="loggedIn.logged">
-                    <li><a ng-href="#/login">Login</a></li>
-                    <li><a ng-href="#/register">Register</a></li>
-                </ul>
-            </div>
-        </nav>
-        <!-- /#page-content-wrapper -->
+    <body data-ng-controller="MainCtrl" style="background-color: #fff">
         
-        <div ng-view></div>
+        <div id="wrapper" ng-if="loggedUser.success">
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li class="visible-xs"><br></li>
+                    <li class="sidebar-brand">
+                        <a href="#">
+                            <img ng-src="assets/images/meritwork_logo_300x60.png" alt="" style="max-width: 200px; max-height: 50px"/>
+                        </a>
+                    </li>
+                    
+                    <li><div align="center"><div style="width: 90%; border: 1px solid; border-color: #444444"></div></div></li>
+                    
+                    <li>
+                        <div align="center" style="padding: 18px">
+                            <img ng-src="{{loggedUser.user.avatar}}" style="max-height: 125px; max-width: 125px" class="img-responsive" />
+                            <h4 style="color: #5db9eb; display: inline"><strong>Welcome, {{loggedUser.user.firstName}}</strong></h4>
+                            <div ng-if='loggedUser.user.type === "guest"'>
+                                <button class="btn btn-success btn-block" ng-click='logout("/login")'><strong>Login</strong></button>
+                                <button class="btn btn-info btn-block" ng-click='logout("/register")'><strong>Register</strong></button>
+                            </div>
+                            <div ng-if='loggedUser.user.type !== "guest"'>
+                                <button class="btn btn-warning btn-block" ng-click='logout("/login")'>Logout</button>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li><div align="center"><div style="width: 90%; border: 1px solid; border-color: #444444 "></div></div></li>
+                    
+                    <li style="padding-top: 15px">
+                        <ul style="padding-left: 0px; padding-right: 15px;" >
+                            <li ng-repeat="menu in menus">
+                                <a ng-href="{{menu.path}}"><span class="glyphicon glyphicon-{{menu.glyphicon}}" style="margin: 0 auto;"></span> {{menu.title}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /#sidebar-wrapper -->
+        </div>
+        
+        
+        <div id="wrapper" ng-hide='!loggedUser.success'>
+            <div id="page-content-wrapper">
+                <!-- top navbar -->
+                <div class="navbar navbar-default navbar-fixed-top visible-xs"  role="navigation" >
+                    <div class="container">
+                        <div class="navbar-header" style="padding-left: 15px">
+                            <button type="button" class="navbar-toggle collapsed btn-xs pull-left active" data-toggle="collapse" data-target=".navbar-responsive-collapse" id="menu-toggle">
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                            </button>
+                            <div class="visible-xs pull-right">
+                                <a class="navbar-brand" href="#">Meritwork</a>
+                            </div>
+                            
+                            <a class="navbar-brand hidden-xs pull-right" href="#"></a>
+                        </div>
+                    </div>
+                </div>
+                <div ng-view ng-if="loggedUser.success"></div>
+            </div>
+        </div>
+        
+        <div ng-hide="loggedUser.success"><div ng-view ></div></div>
+        
+        
     </body>
 </html>

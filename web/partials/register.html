@@ -7,6 +7,7 @@ File created by ashcrok
 <!-- Page Content -->
 <div class="page-content-wrapper">
     <div class="container-fluid">
+        <br>
         <div class="col-md-12">
             <div class="modal-dialog">
                 <div class="panel-heading" align="center">
@@ -16,26 +17,41 @@ File created by ashcrok
                     <form role="form">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="First Name" name="firstName" type="text" autofocus="">
+                                <input class="form-control" placeholder="Email" 
+                                       name="email" type="email" autofocus="" 
+                                       ng-model="input.email">
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Last Name" name="lastName" type="text" autofocus="">
+                                <input class="form-control" placeholder="First Name" 
+                                       name="firstName" type="text" autofocus="" 
+                                       ng-model="input.firstName">
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Email" name="email" type="email" autofocus="">
+                                <input class="form-control" placeholder="Last Name" 
+                                       name="lastName" type="text" autofocus="" 
+                                       ng-model="input.lastName">
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                <input class="form-control" placeholder="Password" 
+                                       name="password" type="password" value="" 
+                                       ng-model="input.password">
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Confirm Password" name="confirmPassword" type="password" value="">
+                                <input class="form-control" placeholder="Confirm Password" 
+                                       name="confirmPassword" type="password" value="" 
+                                       ng-model="input.confirmPassword">
                             </div>
                             <div class="form-group">
-                                <p style="font-size: 11px">By clicking Sign Up, you agree to our <a href="#">Terms</a> and that you have read our <a href="#">Data Use Policy</a>, including our <a href="#">Cookie Use</a>.</p>
+                                <p style="font-size: 11px">By clicking Sign Up, 
+                                    you agree to our <a href="#">Terms</a> 
+                                    and that you have read our <a href="#">Data Use Policy</a>, 
+                                    including our <a href="#">Cookie Use</a>.
+                                </p>
                             </div>
                             <br>
+                            <div class="alert alert-danger" role="alert" ng-show="error === 'true'">{{errorMessage}}</div>
                             <!-- Change this to a button or input when using this as a form -->
-                            <button type="button" class="btn btn-primary btn-lg btn-block">Sign Up</button>
+                            <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="submit()">Sign Up</button>
                         </fieldset>
                     </form>
                     <br>

@@ -1,0 +1,305 @@
+<!-- Page Content -->
+<div class="page-content-wrapper" >
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="visible-xs">
+                <br>
+                <br>
+            </div>
+
+<!--             USER INFO -->
+            <div>
+                <div class="col-md-10 col-md-offset-2">
+                    <h2 style="color: #4da0d1; font-family: 'Roboto Condensed', sans-serif">User Info</h2>
+                </div>
+                <div><div class="col-md-10 col-md-offset-1" style="border-bottom: 7px solid; border-color: #d9dee7; margin-bottom: 15px"></div></div>
+
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-xs-3 col-md-2 control-label">Avatar:</label>
+                        <div class="col-xs-9 col-md-8">
+                            <div class="row">
+                                <div class="col-md-9 col-xs-12">
+                                    <input type="text" class="form-control" placeholder="{{avatar.url}}" ng-model="avatar.url">
+                                </div>
+                                <div class="visible-xs">
+                                    <br>
+                                    <br>
+                                </div>
+                                <div class="col-md-3 col-xs-12">
+                                    <button type="button" class="btn btn-primary pull-right btn-block" ng-click="submitAvatar()">
+                                        <span class="glyphicon glyphicon-user" style="margin-right: 4px"></span>
+                                        Submit Avatar
+                                    </button>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="col-md-9 col-xs-12">
+                                    <p style="font-size: 12px">
+                                        You can host your image on <a href="https://imgur.com">https://imgur.com/</a>.
+                                        In this field introduce the direct link to the image,
+                                        witch starts with http:// and ends with .jpg, .png or .gif.
+                                        Any other format may result in a surprise.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-xs-3 col-md-2 control-label">Location:</label>
+                        <div class="col-xs-9 col-md-8">
+                            <div class="row">
+                                <div class="col-md-9 col-xs-12">
+                                    <input id="autocomplete" type="text" class="form-control" ng-model="loggedUser.user.location">
+                                </div>
+                                <div class="visible-xs">
+                                    <br>
+                                    <br>
+                                </div>
+                                <div class="col-md-3 col-xs-12">
+                                    <button type="button" class="btn btn-primary pull-right btn-block" ng-click="submitLocation()">
+                                        Save Location
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-xs-3 col-md-2 control-label">Privacy: </label>
+                        <div class="col-xs-9 col-md-8">
+                            <div class="row">
+                                <div class="col-md-9 col-xs-12">
+                                    <label class="control-label">Current profile visibility: {{privacy}}</label>
+                                </div>
+                                <div class="visible-xs">
+                                    <br>
+                                    <br>
+                                </div>
+                                <div class="col-md-3 col-xs-12">
+                                    <button type="button" class="btn btn-primary pull-right btn-block" ng-click="changePrivacy()">
+                                        Change Privacy
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+                </form>
+                
+                <div class="visible-xs">
+                    <br>
+                    <br>
+                </div>
+            </div>
+
+
+<!--             CONTACT INFO -->
+            <div>
+                <div class="col-md-10 col-md-offset-2">
+                    <h2 style="color: #4da0d1; font-family: 'Roboto Condensed', sans-serif">Contact Info</h2>
+                </div>
+                <div><div class="col-md-10 col-md-offset-1" style="border-bottom: 7px solid; border-color: #d9dee7; margin-bottom: 15px"></div></div>
+
+
+                <form class="form-horizontal" >
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="col-xs-0 col-md-2"></div>
+                            <div class="col-xs-12 col-md-8">
+                                
+                                <table class="table table-hover table-condensed table-bordered hidden-xs" style="background-color: white;" ng-if="loggedUser.user.contact.length !== 0">
+                                    <colgroup>
+                                        <col span="1" style="width: 15%;">
+                                        <col span="1" style="width: 65%;">
+                                        <col span="1" style="width: 10%;">
+                                        <col span="1" style="width: 10%;">
+                                    </colgroup>
+                                    <thead>
+                                        <tr align="center">
+                                            <td><strong>Type</strong></td>
+                                            <td align="justify"><strong>Content</strong></td>
+                                            <td class="hidden-xs"><b>Edit</b></td>
+                                            <td class="hidden-xs"><b>Delete</b></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-ng-repeat="contact in loggedUser.user.contact" data-toggle="modal" ng-click="editContact(contact)" align="center" style="cursor: pointer;">
+                                            <td><span class="label label-success">{{contact.type}}</span></td>
+                                            <td align="justify">{{contact.content}}</td>
+                                            <td class="hidden-xs"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                                            <td class="hidden-xs"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-trash"></span></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                                <ul class="list-group visible-xs" ng-repeat="contact in loggedUser.user.contact" data-toggle="modal" ng-click="editContact(contact)" style="cursor: pointer;">
+                                    <li class="list-group-item">
+                                        <p><strong>Type: </strong><span class="label label-success">{{contact.type}}</span></p>
+                                        <p><strong>Content: </strong>{{contact.content}}</p>
+                                    </li>
+                                </ul>
+                                
+                                <div class="alert alert-info" role="alert" ng-if="loggedUser.user.contact.length === 0">
+                                    You don't have any contact information set yet.
+                                </div>
+                                
+                                <button type="button" class="btn btn-primary pull-right" data-toggle="modal" ng-click="newContact()" ng-if="loggedUser.user.contact.length < 2">
+                                    <span class="glyphicon glyphicon-plus" style="margin-right: 4px"></span>
+                                    New Contact Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <br>
+            </div>
+
+
+            
+            <!--             MY SERVICES -->
+            <div>
+                <div class="col-md-10 col-md-offset-2">
+                    <h2 style="color: #4da0d1; font-family: 'Roboto Condensed', sans-serif">My Services</h2>
+                </div>
+                <div><div class="col-md-10 col-md-offset-1" style="border-bottom: 7px solid; border-color: #d9dee7; margin-bottom: 15px"></div></div>
+
+                
+                <form class="form-horizontal" ng-if="canProvideService()">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="col-xs-0 col-md-2"></div>
+                            <div class="col-xs-12 col-md-8">
+                                <table class="table table-hover table-condensed table-bordered hidden-xs" style="background-color: white;" ng-hide="services.length === 0">
+                                    <colgroup>
+                                        <col span="1" style="width: 40%;">
+                                        <col span="1" style="width: 60%;">
+                                    </colgroup>
+                                    <thead>
+                                        <tr align="justify">
+                                            <td><strong>Service name</strong></td>
+                                            <td><strong>Description</strong></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-ng-repeat="service in services" data-toggle="modal" ng-click="updateService(service)" style="cursor: pointer;">
+                                            <td>{{service.service}}</td>
+                                            <td>{{service.description}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                                <button type="button" class="btn btn-primary pull-right" data-toggle="modal" ng-click="newService()" >
+                                    <span class="glyphicon glyphicon-plus" style="margin-right: 4px"></span>
+                                    New Service
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                
+                <div ng-hide="canProvideService()">
+                    <div class="form-group">
+                        <div class="col-xs-0 col-md-2"></div>
+                        <div class="col-xs-12 col-md-8">
+                            <div class="alert alert-info" role="alert">You must have a location set and at least one contact information in order to offer services.</div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+                    
+                </div>
+                
+                <br>
+            </div>
+
+
+
+
+<!--             CHANGE PASSWORD -->
+            <div>
+                <div class="col-md-10 col-md-offset-2">
+                    <h2 style="color: #4da0d1; font-family: 'Roboto Condensed', sans-serif">Change Password</h2>
+                </div>
+                <div><div class="col-md-10 col-md-offset-1" style="border-bottom: 7px solid; border-color: #d9dee7; margin-bottom: 15px"></div></div>
+
+
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputCurrentPassword" class="col-sm-3 control-label">Current Password</label>
+                        <div class="col-sm-7">
+                            <input type="password" class="form-control" id="inputCurrentPassword" placeholder="Enter Current Password" ng-model="password.changePassword.currentPassword">
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="inputNewPassword" class="col-sm-3 control-label">New Password</label>
+                        <div class="col-sm-7">
+                            <input type="password" class="form-control" id="inputNewPassword" placeholder="Enter New Password" ng-model="password.changePassword.newPassword">
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputConfirmNewPassword" class="col-sm-3 control-label">Confirm New Password</label>
+                        <div class="col-sm-7">
+                            <input type="password" class="form-control" id="inputConfirmNewPassword" placeholder="Confirm New Password" ng-model="password.changePassword.confirmNewPassword">
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                </form>
+
+                <div class="form-group">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-7">
+                        <button type="button" class="btn btn-primary pull-right" ng-click="changePassword()">
+                            Submit New Password
+                        </button>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    
+                    <br>
+                    <br>
+                    <br>
+                </div>
+                
+<!--                 Error panel -->
+                <div class="form-group" ng-show="password.error === 'true'">
+                    <div class="col-xs-12">
+                        <div class="col-xs-0 col-md-2"></div>
+                        <div class="alert alert-danger col-xs-12 col-md-8 control-label" role="alert">{{password.errorMessage}}</div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+                
+<!--                 Success panel -->
+                <div class="form-group" ng-show="password.finish === 'true'">
+                    <div class="col-xs-12">
+                        <div class="col-xs-0 col-md-2"></div>
+                        <div class="alert alert-success col-xs-12 col-md-8 control-label" role="alert">{{password.finishMessage}}</div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->

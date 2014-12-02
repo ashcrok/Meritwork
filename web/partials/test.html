@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!--
+File created by ashcrok
+                Mihai Pricop
+-->
+
+<div class="page-content-wrapper" >
+
+    <div class="container-fluid" align="center">
+        <webcam class="well-small pull-right"
+            on-stream="onStream(stream,video)"
+            on-error="onError(err)"
+            on-streaming="onSuccess(video)">
+            <div class="alert alert-error" ng-show="webcamError">
+                <span>Webcam could not be started. Did you give access to it?</span>
+            </div>
+        </webcam>
+        <button class="btn btn-default" ng-click="makeSnapshot()">Snap Photo</button>
+        <canvas id="snapshot"></canvas>
+    </div>
+
+</div>

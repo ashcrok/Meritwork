@@ -4425,7 +4425,7 @@ a.thumbnail.active {
   color: #333;
 }
 .alert {
-  padding: 15px;
+  padding: 5px;
   margin-bottom: 20px;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -5782,8 +5782,41 @@ button.close {
     display: none !important;
   }
 }
+
+@media (max-width: 767px) {
+    .colbg { background: none; }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .colbg { background: none; }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .colbg { background-color:white; }
+}
+
+@media (min-width: 1200px) {
+    .colbg { background-color:white; }
+}
+
+
 /*# sourceMappingURL=bootstrap.css.map */
 
 /*    --------------------------------------------------
-    :: Footer
+    :: CUSTOM
 	-------------------------------------------------- */
+
+/* modal moving right */
+html {
+overflow: -moz-scrollbars-vertical;
+overflow-y: scroll;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+  select:focus,
+  textarea:focus,
+  input:focus {
+    font-size: 16px;
+    background: #eee;
+  }
+}

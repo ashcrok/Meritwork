@@ -11,28 +11,31 @@ File created by ashcrok
             <div class="modal-dialog">
                 <div class="panel-heading" align="center">
                     <div align="center">
-                        <img ng-src="http://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png" style="max-height: 180px; max-width: 180px"  />
+                        <img ng-src="assets/images/meritwork_icon.png" class="hidden-xs" style="max-height: 180px; max-width: 180px"  />
+                        <img ng-src="assets/images/meritwork_logo_300x60.png" class="visible-xs" style="max-height: 180px; max-width: 180px"  />
                     </div>
                 </div>
                 <div class="panel-body" style="border-bottom: 1px solid lightgray">
                     <form role="form">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus="">
+                                <input class="form-control" placeholder="Email" 
+                                       name="email" type="email" autofocus="" 
+                                       ng-model="input.email">
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                <input class="form-control" placeholder="Password" 
+                                       name="password" type="password" value="" 
+                                       ng-model="input.password">
                             </div>
-                            <!--
-                            <div class="checkbox">
-                                <label>
-                                    <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                </label>
-                            </div>
-                            -->
                             <br>
-                            <!-- Change this to a button or input when using this as a form -->
-                            <button type="button" class="btn btn-primary btn-lg btn-block">Login</button>
+                            <div class="alert alert-danger" role="alert" ng-show="error === 'true'">{{errorMessage}}</div>
+                            <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="submit()"><strong>Login</strong></button>
+                            <br>
+                            <p align="center"><strong>Or</strong></p>
+                            <div class="container-fluid">
+                                <button type="button" class="btn btn-default btn-sm btn-block" ng-click="guestLogin()"><strong>Login as Guest</strong></button>
+                            </div>
                         </fieldset>
                     </form>
                     <br>

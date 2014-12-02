@@ -1,0 +1,13 @@
+{
+    "elements": {
+        "webcam": {
+            "attributes": {
+                "on-streaming": {},
+                "on-error": {},
+                "on-stream": {},
+                "class": {}
+            }
+        }
+    },
+    "attributes": {}
+}
